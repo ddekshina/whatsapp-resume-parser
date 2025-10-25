@@ -1,7 +1,7 @@
 import google.generativeai as genai
 
 # Replace with your actual Gemini API key
-genai.configure(api_key="AIzaSyBLp5GkaWs-yp9zlz_c7so6f_nz_2EoJsw")
+genai.configure(api_key="AIza.........")
 
 # List available models
 print("Available models:")

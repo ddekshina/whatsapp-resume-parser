@@ -8,8 +8,8 @@ load_dotenv()
 authtoken = os.getenv('NGROK_AUTHTOKEN')
 listener = ngrok.forward(5000, authtoken=authtoken)
 
-print(f"🌐 Public URL: {listener.url()}")
-print(f"📱 Use this URL for WhatsApp webhook: {listener.url()}/webhook")
+print(f"Public URL: {listener.url()}")
+print(f"Use this URL for WhatsApp webhook: {listener.url()}/webhook")
 print("Press Ctrl+C to stop...")
 
 try:

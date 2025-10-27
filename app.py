@@ -4,7 +4,7 @@ from twilio.rest import Client
 import os
 from dotenv import load_dotenv
 import requests
-from parser import parse_resume_from_file  # <-- CHANGED IMPORT
+from parser import parse_resume_from_file  
 from sheets_handler import add_resume_to_sheet
 import logging
 
@@ -13,7 +13,7 @@ import logging
 load_dotenv()
 app = Flask(__name__)
 
-# Configure logging
+#logging
 logging.basicConfig(level=logging.INFO)
 app.logger.setLevel(logging.INFO)
 
@@ -45,6 +45,7 @@ def webhook():
                 file_name = download_media(media_url, media_type)
                 
                 if file_name:
+                    
                     # Parse the resume with AI (no fallback)
                     parsed_data = parse_resume_from_file(file_name)
                     
@@ -62,20 +63,20 @@ def webhook():
                             )
                             msg.body(reply_body)
                         else:
-                            msg.body("❌ Error saving data to Google Sheets. Please contact support.")
+                            msg.body("Error saving data to Google Sheets. Please contact support.")
                     else:
-                        msg.body("❌ Could not parse resume. The file might be empty, corrupt, or an image-based PDF. Please send a valid text-based PDF or DOCX file.")
+                        msg.body("Could not parse resume. The file might be empty, corrupt, or an image-based PDF. Please send a valid text-based PDF or DOCX file.")
                     
                     # Clean up downloaded file
                     if os.path.exists(file_name):
                         os.remove(file_name)
                 else:
-                    msg.body("❌ Error downloading file. Please try again.")
+                    msg.body("Error downloading file. Please try again.")
             else:
-                msg.body("📄 Please send a resume as a PDF or DOCX file.")
+                msg.body("Please send a resume as a PDF or DOCX file.")
         else:
             # No attachment, send instructions
-            msg.body("👋 Welcome to the Resume Parser Bot!\n\n"
+            msg.body(" Welcome to the Resume Parser Bot!\n\n"
                      "Send me a resume (PDF or DOCX) and I will extract the key details and save them to Google Sheets.")
         
         return str(response)

@@ -52,12 +52,12 @@ def add_resume_to_sheet(resume_data, parsing_method="AI"):
         row_data = [
             resume_data.get('name', 'N/A'),
             resume_data.get('email', 'N/A'),
-            resume_data.get('mobile_number', resume_data.get('phone', 'N/A')), # Use mobile_number or phone
+            resume_data.get('mobile_number', resume_data.get('phone', 'N/A')),
             resume_data.get('skills', 'N/A'),
             resume_data.get('education', 'N/A'),
             resume_data.get('experience', 'N/A'),
             resume_data.get('college', 'N/A'),
-            resume_data.get('summary', 'N/A'), # Added Summary field
+            resume_data.get('summary', 'N/A'), 
             parsing_method,
             timestamp
         ]

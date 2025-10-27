@@ -1,6 +1,7 @@
 """
 Text extraction and parsing by gemini
 """
+
 import google.generativeai as genai
 import os
 from dotenv import load_dotenv
@@ -33,7 +34,7 @@ def _extract_text_from_pdf(pdf_path):
                 if page_text:
                     text += page_text + "\n"
     except Exception:
-        return "" # Fail silently
+        return "" # fail silently
     return text
 
 def _extract_text_from_docx(docx_path):
@@ -43,12 +44,12 @@ def _extract_text_from_docx(docx_path):
         text = "\n".join([paragraph.text for paragraph in doc.paragraphs])
         return text
     except Exception:
-        return "" # Fail silently
+        return "" # fail silently
 
 def _parse_with_gemini(text):
     """
     Use Google Gemini AI to extract resume information, with three-model fallback.
-    Order: 2.5-flash → 2.5-pro → pro-latest
+    Order: 2.5-flash -> 2.5-pro -> pro-latest [ to remove token limit issue ]
     """
     if not AI_AVAILABLE:
         return None
